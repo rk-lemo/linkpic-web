@@ -7,7 +7,25 @@ export default function Home() {
     const [link, setLink] = useState<string>('')
 
     const handleShortify = async () => {
-        alert(link)
+        try {
+            const response = await fetch( 'http://localhost:3001/short',{
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    originalUrl: link
+                })
+            });
+
+            const result = await response.json();
+            console.log(result);
+            alert(result.url);
+        } catch (error) {
+         console.log(error.message)
+            alert(error);
+        }
     }
 
     return (
