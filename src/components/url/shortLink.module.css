@@ -1,0 +1,21 @@
+.shortLink {
+    /*margin-top: 10px; !* Adjust margin as needed *!*/
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center text */
+    position: absolute;
+    top: calc(50% + 50px); /* Adjust top position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.shortLink a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Set the color of the link */
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+.shortLink a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

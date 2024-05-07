@@ -2,13 +2,15 @@
 
 import styles from "./page.module.css";
 import {useState} from 'react';
+import ShortLink from '@/components/url/ShortLink';
 
 export default function Home() {
     const [link, setLink] = useState<string>('')
+    const [shortLink, setShortLink] = useState<string>('')
 
     const handleShortify = async () => {
         try {
-            const response = await fetch( 'http://localhost:3001/short',{
+            const response = await fetch('http://localhost:3001/short', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -20,22 +22,25 @@ export default function Home() {
             });
 
             const result = await response.json();
-            console.log(result);
-            alert(result.url);
-        } catch (error) {
-         console.log(error.message)
+
+            console.log(result)
+
+            setShortLink(result.url);
+        } catch (error: any) {
+            console.log(error?.message)
             alert(error);
         }
     }
 
     return (
         <main>
-            <form className={styles.root} onSubmit={handleShortify}>
-                <input className={styles.linkInput} onChange={(e) => setLink(e.currentTarget.value)}/>
-                {/*<button className={styles.button} onSubmit={handleShortify}>Shortify</button>*/}
-                <input className={styles.button} type="submit" value={'Shortify'}/>
-
-            </form>
+            <div className={styles.container}>
+                <div className={styles.form}>
+                    <input className={styles.linkInput} onChange={(e) => setLink(e.currentTarget.value)}/>
+                    <button className={styles.button} onClick={handleShortify}>Shortify</button>
+                </div>
+                {shortLink && <ShortLink shortLink={shortLink}/>}
+            </div>
         </main>
-    );
+);
 }

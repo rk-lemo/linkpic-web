@@ -1,5 +1,6 @@
 @import "normilize.css";
 
-.root {
+body {
     background-color: black;
+    color: white;
 }
