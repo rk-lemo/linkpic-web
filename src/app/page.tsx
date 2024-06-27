@@ -10,6 +10,7 @@ export default function Home() {
 
     const handleShortify = async () => {
         try {
+            console.log('1')
             const response = await fetch('http://localhost:3001/short', {
                 method: 'POST',
                 headers: {
@@ -20,6 +21,8 @@ export default function Home() {
                     originalUrl: link
                 })
             });
+
+            console.log('2')
 
             const result = await response.json();
 
